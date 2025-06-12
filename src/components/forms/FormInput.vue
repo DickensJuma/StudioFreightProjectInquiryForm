@@ -27,3 +27,65 @@ defineProps({
 
 defineEmits(['update:modelValue'])
 </script>
+
+<style lang="scss" scoped>
+@use '../../assets/styles/_variables' as *;
+
+.form-group {
+    position: relative;
+    width: 100%;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+
+    
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: $primary-color;
+  font-family: $font-family;
+}
+.section-title {
+  font-size: medium;
+font-size: 12px;
+  margin-bottom: 5px;
+  color: gray;
+}
+
+input,
+textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  font-family: $font-family;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+  width: 90%;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: $primary-color;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+</style>

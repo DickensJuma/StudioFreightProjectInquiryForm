@@ -1,52 +1,12 @@
-// _base.scss - Base styles
-@use 'variables' as *;
-@use 'base';
-@use 'components';
-@use 'utilities';
-@use './form';
-
-// Reset and base styles
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: $font-family;
-  background-color: color(background);
-  color: color(text-primary);
-  line-height: map-get($line-heights, normal);
-}
-
-// Form styles
-.form-container {
-  max-width: $container-max-width;
-  margin: 0 auto;
-  padding: spacing(lg);
-}
-
-// _utilities.scss - Utility classes
-@use 'variables' as *;
-
-.container {
-  max-width: $container-max-width;
-  margin: 0 auto;
-  padding: 0 spacing(sm);
-}
-
-.text-center { text-align: center; }
-.mt-1 { margin-top: spacing(xs); }
-.mt-2 { margin-top: spacing(sm); }
-.mt-3 { margin-top: spacing(md); }
+@use './variables' as *;
 
 .form-card {
   background: #111;
-  border-radius: 16px;
+  // border-radius: 16px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.7);
   padding: 1.5rem 1rem;
   max-width: 600px;
-  margin: 1rem auto;
+  margin: auto;
   border: 1px solid #222;
   color: #fff;
   transition: box-shadow 0.3s;
