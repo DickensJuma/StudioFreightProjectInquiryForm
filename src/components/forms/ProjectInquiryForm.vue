@@ -41,29 +41,29 @@
         <FormInput
           v-model="form.firstName"
           label="FIRST NAME *"
-          placeholder="FIRST NAME"
+           placeholder="TYPE HERE"
           :error="errors.firstName"
           required
         />
         <FormInput
           v-model="form.lastName"
           label="LAST NAME *"
-          placeholder="LAST NAME"
+           placeholder="TYPE HERE"
           :error="errors.lastName"
           required
         />
         <FormInput
           v-model="form.company"
-          label="COMPANY"
-          placeholder="COMPANY"
+          label="COMPANY NAME *"
+           placeholder="TYPE HERE"
           :error="errors.company"
           required
         />
         <FormInput
           v-model="form.email"
-          label="Email"
+          label="YOUR EMAIL *"
           type="EMAIL"
-          placeholder="EMAIL *"
+          placeholder="TYPE HERE"
           :error="errors.email"
           required
         />
@@ -81,54 +81,25 @@
       </div>
     </div>
 
+
     <!-- Additional Info Section -->
     <div class="form-section">
 
       <div class="form-grid">
         <div class="form-group">
-          <FormSelect v-model="form.budget" label="BUDGET":options="budgetOptions" placeholder="SELECT" />
+          <FormSelect v-model="form.budget" label=" BUDGET EXPECTATION*":options="budgetOptions" placeholder="SELECT" />
         </div>
-        <FormInput v-model="form.timeline" placeholder="TIMELINE" label="TIMELINE" />
+        <FormInput v-model="form.timeline" placeholder="TYPE HERE" label="TIMELINE EXPECTATION*" />
       </div>
-
       <div class="form-grid">
-        <FormInput v-model="form.additional1" placeholder="TYPE HERE" label="ADDITIONAL INFO 1" />
-        <FormInput v-model="form.additional2" placeholder="TYPE HERE" label="ADDITIONAL INFO 2" />
+        <FormInput v-model="form.additional1" placeholder="TYPE HERE" label="HOW DID YOU FIND US?" />
+        <FormInput v-model="form.additional2" placeholder="TYPE HERE" label="FAVORITE MOVIE OR ALBUM" />
       </div>
 
-      <TagButtonGroup v-model="form.services" :options="serviceOptions" label="Services Needed" />
+     
     </div>
   
  
-
-    <!-- More Info Section -->
-    <div class="form-section">
-      <div class="section-title">MORE INFORMATION</div>
-      <div class="form-grid more-info-grid">
-        <FormSelect
-          v-model="form.moreInfo"
-          label="More Than One"
-          placeholder="SELECT"
-          :options="moreInfoOptions"
-        />
-        <FormInput
-          v-model="form.moreField1"
-          label="More Than One"
-          placeholder="TYPE HERE"
-        />
-        <FormInput
-          v-model="form.moreField2"
-          label="More Than One"
-          placeholder="TYPE HERE"
-        />
-        <FormInput
-          v-model="form.moreField3"
-          label="More Than One"
-          placeholder="TYPE HERE"
-        />
-      </div>
-    </div>
-
     <!-- Submit Section -->
     <div class="submit-section">
       <button type="submit" class="submit-btn" :disabled="isSubmitting">

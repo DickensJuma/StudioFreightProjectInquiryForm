@@ -1,10 +1,13 @@
-@use './variables' as *;
+@use './_fonts';
+@use './_variables' as *;
+@use './_form';
 @use './mixins';
-@use './form';
 
-
+// Global styles
 body {
-  font-family: $font-family;
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: $background-color;
   color: $primary-color;
 }

@@ -37,9 +37,16 @@ $colors: (
   info: #00bfff
 );
 
+// Font Families
+$font-family-base: 'Helvetica', sans-serif;
+$font-family-light: 'Helvetica Light', sans-serif;
+$font-family-compressed: 'Helvetica Compressed', sans-serif;
+$font-family-rounded: 'Helvetica Rounded', sans-serif;
+$font-family-inter: 'Inter', sans-serif;
+
 // Typography
 $font-families: (
-  primary: ('Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif),
+  primary: ($font-family-inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif),
   mono: ('JetBrains Mono', 'Fira Code', 'Monaco', monospace)
 );
 

@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use './_variables' as *;
 
 .form-card {
   background: #111;
@@ -49,4 +49,19 @@
       }
     }
   }
+}
+
+// Form styles
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.element {
+  font-family: $font-family-base; // For regular Helvetica
+  // or
+  font-family: $font-family-light; // For Helvetica Light
+  // or
+  font-family: $font-family-compressed; // For Helvetica Compressed
+  // or
+  font-family: $font-family-rounded; // For Helvetica Rounded
 }

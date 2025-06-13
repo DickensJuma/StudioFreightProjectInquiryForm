@@ -5,7 +5,7 @@
     <input
       :type="type"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="handleInput"
       :placeholder="placeholder"
       :class="['form-input', { error: error }]"
       :data-field="dataField"
@@ -13,15 +13,14 @@
       @focus="handleFocus"
       @blur="handleBlur"
     />
-    <div v-if="error" class="error-message">{{ error }}</div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { gsap } from 'gsap'
 
-defineProps({
+const props = defineProps({
   modelValue: [String, Number],
   type: { type: String, default: 'text' },
   placeholder: String,
@@ -31,9 +30,22 @@ defineProps({
   dataField: String
 })
 
-defineEmits(['update:modelValue'])
-
+const emit = defineEmits(['update:modelValue'])
 const input = ref(null)
+
+function handleInput(event) {
+  emit('update:modelValue', event.target.value)
+  updateBorderColor(event.target.value)
+}
+
+function updateBorderColor(value) {
+  const hasValue = value && value.trim() !== ''
+  gsap.to(input.value, {
+    borderColor: hasValue ? '#00ff88' : '#333',
+    duration: 0.3,
+    ease: 'power2.out'
+  })
+}
 
 function handleFocus() {
   gsap.to(input.value, {
@@ -48,12 +60,19 @@ function handleFocus() {
 function handleBlur() {
   gsap.to(input.value, {
     backgroundColor: '#000',
-    borderColor: '#333',
+    borderColor: props.modelValue && props.modelValue.trim() !== '' ? '#00ff88' : '#333',
     color: '#fff',
     duration: 0.3,
     ease: 'power2.out'
   })
 }
+
+// Watch for initial value
+watch(() => props.modelValue, (newValue) => {
+  if (input.value) {
+    updateBorderColor(newValue)
+  }
+}, { immediate: true })
 </script>
 
 <style lang="scss" scoped>
@@ -97,6 +116,7 @@ font-size: 12px;
   color: #fff;
   padding: 16px 14px;
   font-size: 15px;
+  font-weight: bold;
   border-radius: 10px;
   outline: none;
 
@@ -115,7 +135,7 @@ font-size: 12px;
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: $primary-color;
+  border-color: #00ff88;
 }
 
 textarea {

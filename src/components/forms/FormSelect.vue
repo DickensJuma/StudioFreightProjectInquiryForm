@@ -61,7 +61,7 @@ defineEmits(['update:modelValue'])
 .form-select:focus,
 .form-textarea:focus {
     background: #111;
-    border-color: #00ff88;;
+    border-color: #00ff88;
 }
 
 .form-textarea {
@@ -84,6 +84,10 @@ defineEmits(['update:modelValue'])
   margin-bottom: 5px;
   color: gray
 
+}
+
+.element {
+  font-family: $font-family-light;
 }
 
 </style>
