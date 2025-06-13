@@ -9,12 +9,18 @@
       :placeholder="placeholder"
       :class="['form-input', { error: error }]"
       :data-field="dataField"
+      ref="input"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
     <div v-if="error" class="error-message">{{ error }}</div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { gsap } from 'gsap'
+
 defineProps({
   modelValue: [String, Number],
   type: { type: String, default: 'text' },
@@ -26,6 +32,28 @@ defineProps({
 })
 
 defineEmits(['update:modelValue'])
+
+const input = ref(null)
+
+function handleFocus() {
+  gsap.to(input.value, {
+    backgroundColor: '#111',
+    borderColor: '#00ff88',
+    color: '#fff',
+    duration: 0.3,
+    ease: 'power2.out'
+  })
+}
+
+function handleBlur() {
+  gsap.to(input.value, {
+    backgroundColor: '#000',
+    borderColor: '#333',
+    color: '#fff',
+    duration: 0.3,
+    ease: 'power2.out'
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -34,6 +62,7 @@ defineEmits(['update:modelValue'])
 .form-group {
     position: relative;
     width: 100%;
+  
 }
 
 .form-group.full-width {
@@ -61,15 +90,26 @@ font-size: 12px;
   color: gray;
 }
 
-input,
-textarea {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  font-family: $font-family;
-  font-size: 1rem;
-  border-radius: 4px;
-  transition: border-color 0.2s;
+.form-input {
   width: 90%;
+  background: #000;
+  border: 1.5px solid #333;
+  color: #fff;
+  padding: 16px 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  outline: none;
+
+  &.error {
+    border-color: #ff4444 !important;
+  }
+
+  &::placeholder {
+    color: #888;
+    opacity: 1;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
 }
 
 input:focus,

@@ -1,6 +1,20 @@
 <!-- components/forms/ProjectInquiryForm.vue -->
 <template>
   <form class="form-card" @submit.prevent="handleSubmit">
+    <!-- Success Section -->
+    <div v-if="isSubmitted" class="success-section" ref="successSection">
+      <div class="plus-line-row">
+        <span class="plus-icon">+</span>
+        <div class="line"></div>
+        <span class="plus-icon">+</span>
+      </div>
+      <div class="section-title">Thanks for reaching out</div>
+      <p>While you anxiously await our reply, you can play <span>this game</span> we built for Lunchbox, create ASCII art with  <span> Aniso</span>, or get in the zone with our latest  <span>playlist</span>. We'll be in touch soon.</p>
+    </div>
+
+    <!-- Form Content -->
+    <div v-else>
+
     <!-- Basic Info Section -->
     <div class="form-section">
       <div class="form-description ">
@@ -10,6 +24,7 @@
           <span class="plus-icon">+</span>
         </div>
         <h1 class="section-title">PROJECT INQUIRY</h1>
+        <p>Hey! We'd love to learn about what you're working towards to ensure we're a good fit. As a next step, please review the details below and submit our LFG form</p>
         <p><span> Timing.</span>
           We're an independent creative studio dedicated to top-caliber outcomes, so we work with full devotion for a few select clients at a time such that inquiries with rushed timelines are generally not possible.
         </p>
@@ -124,12 +139,16 @@
     <!-- FAQs Section -->
     <FaqSection :faqs="faqs" />
 
+
+    </div>
+
+
   
   </form>
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, watch } from 'vue'
 import { gsap } from 'gsap'
 import FormInput from './FormInput.vue'
 import FormSelect from './FormSelect.vue'
@@ -141,6 +160,8 @@ import { useFormValidation } from '../../composables/useFormValidation'
 const emit = defineEmits(['submit'])
 
 const isSubmitting = ref(false)
+const isSubmitted = ref(false)
+const successSection = ref(null)
 
 const form = reactive({
   firstName: '',
@@ -198,13 +219,12 @@ function handleSubmit() {
     scrollToFirstError()
     return
   }
-
-  isSubmitting.value = true
+ 
 
   // Simulate API call
   setTimeout(() => {
     emit('submit', { ...form })
-    alert('Thank you! Your inquiry has been submitted.')
+    isSubmitted.value = true
     resetForm()
     isSubmitting.value = false
   }, 2000)
@@ -255,6 +275,17 @@ onMounted(() => {
     duration: 0.6
   });
 });
+
+watch(isSubmitted, (newValue) => {
+  if (newValue && successSection.value) {
+    gsap.from(successSection.value, {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      ease: 'power2.out'
+    })
+  }
+})
 </script>
 
 
@@ -366,6 +397,7 @@ onMounted(() => {
   color: #ffffff;
   // margin-bottom: 10px;
   font-weight: 400;
+ 
 }
 
 .form-description p {
@@ -585,4 +617,35 @@ onMounted(() => {
   }
 }
 
+.success-section {
+  text-align: left;
+  padding: 20px 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #666;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ffffff;
+  margin-bottom: 20px;
+
+  span {
+    color: #00ff00;
+  }
+}
+
+.plus-line-row {
+  margin-bottom: 20px;
+}
 </style>
