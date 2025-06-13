@@ -84,30 +84,10 @@ onUnmounted(() => {
 })
 </script>
 
+
 <style lang="scss" scoped>
 @use '../assets/styles/_variables' as *;
 
-.main-container {
-  min-height: 100vh;
-  background: $background-color;
-  font-family: $font-family;
-}
-
-.studio-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: red;
-}
-
-.main-content {
-  position: relative;
-  z-index: 1;
-  padding: 2rem;
-}
-</style>
-
-<style lang="scss" scoped>
 * {
     margin: 0;
     padding: 0;
@@ -119,6 +99,32 @@ body {
     background: #000;
     color: #fff;
     overflow-x: hidden;
+}
+
+
+.main-container {
+  min-height: 100vh;
+  background: $background-color;
+  font-family: $font-family;
+}
+
+.studio-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><text x="50" y="150" fill="%23111" font-size="120" font-weight="bold" font-family="Arial">STUDIO</text></svg>') no-repeat;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
 }
 
 .main-content {
@@ -403,8 +409,8 @@ body {
 }
 
 .sidebar-header {
-    padding: 20px 30px;
-    border-bottom: 1px solid #333;
+    padding: 10px 20px;
+    // border-bottom: 1px solid #333;
     display: flex;
     justify-content: space-between;
     align-items: center;

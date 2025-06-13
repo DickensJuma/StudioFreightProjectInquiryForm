@@ -40,8 +40,7 @@ function handleFormSubmit(formData) {
 }
 
 .sidebar-header {
-  padding: 20px 30px;
-  border-bottom: 1px solid #333;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

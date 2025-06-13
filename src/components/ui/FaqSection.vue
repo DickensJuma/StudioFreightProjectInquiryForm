@@ -4,7 +4,7 @@
     <div class="section-title">FAQS</div>
     
     <div class="faq-item" v-for="(faq, index) in faqs" :key="index">
-      <button class="faq-question" @click="toggleFaq(index)">
+      <button type="button"  class="faq-question" @click="toggleFaq(index)">
         {{ faq.question }}
         <span class="faq-icon" :class="{ rotated: openFaq === index }">+</span>
       </button>
